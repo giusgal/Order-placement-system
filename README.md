@@ -1,5 +1,10 @@
 # ProgettoACP - Sistema gestione ristorante
 
+## Screenshots
+<p align="center">
+    <img src="./Cattura.PNG">
+</p>
+
 ## Risorse
 | Metodo    | Risorsa                                     | Descrizione                                                                     |
 |-----------|---------------------------------------------|---------------------------------------------------------------------------------|
