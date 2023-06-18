@@ -1,7 +1,7 @@
 # ProgettoACP - Sistema gestione ristorante
 
 ## Risorse
-| Http verb | Risorsa                                     | Descrizione                                                                     |
+| Metodo    | Risorsa                                     | Descrizione                                                                     |
 |-----------|---------------------------------------------|---------------------------------------------------------------------------------|
 | GET       | /tavoli                                     | Restituisce le informazioni sui tavoli del ristorante                           |
 | POST      | /tavoli/{numero}/ordine                     | Crea un nuovo ordine al tavolo identificato da {numero}                         |
