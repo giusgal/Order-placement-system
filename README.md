@@ -1,7 +1,5 @@
 # ProgettoACP - Sistema gestione ristorante
 
-## Test
-
 ## Screenshots
 <p align="center">
     <img src="./Cattura.PNG">
