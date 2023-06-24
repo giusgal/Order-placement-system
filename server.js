@@ -1,23 +1,32 @@
-let http = require('http');
 let express = require('express');
 let mongoose = require('mongoose');
+let tavoliRoutes = require('./routes/tavoli.routes');
 
 let app = express();
 
-/* Connessione al DB */
-mongoose.connect('mongodb://127.0.0.1:27017/ristorante_db')
-.then(function() {
-	console.log("Connessione avvenuta verso mongodb");
-});
+/* Utilizzo rotte */
+app.use(express.json());
+app.use(tavoliRoutes);
 
-/* Definizione schemi e modelli */
+let startServer = function(port) {
+	/* Creazione server */
+	app.listen(port, () => {
+		console.log("Server in ascolto su localhost:"+port);
 
-/* Creazione server */
-http.createServer(app).listen(5000, function() {
-	console.log("Server listening on localhost:5000");
-});
+		/* Connessione al DB */
+		mongoose.connect('mongodb://127.0.0.1:27017/ristorante_db')
+		.then(() => {
+			console.log("Connessione avvenuta verso mongodb");
+		})
+		.catch((err) => {
+			console.log("Errore: impossibile connettersi a mongodb");
+			process.exit();
+		});
+	})
+	.on('error', (err) => {
+		console.log("Errore: impossibile creare un server su localhost:"+port);
+		process.exit();
+	});
+}
 
-/* Definizione rotte */
-app.get("/test", function(req, res) {
-	res.send("Hello, World!");
-});
+startServer(5000);
