@@ -68,29 +68,6 @@ let createOrdine = async function(numeroTavolo, occupanti) {
     }
 }
 
-let updateStatoOrdine = async function(numeroTavolo) {
-    let tavolo = await getTavolo(numeroTavolo);
-
-    // verifico presenza ordine
-    if(tavolo.ordine === undefined) {
-        throw new IllegalArgumentException("non esiste un ordine aperto al tavolo selezionato"); 
-    }
-
-    try {
-        if(tavolo.ordine.stato === states[states.length-1]) {
-            // se l'ordine si trova nell'ultimo stato (completato) => lo elimino
-            await Tavolo.updateOne({numero: numeroTavolo}, {$unset: {ordine: 1}}).orFail();
-        } else {
-            // altrimenti, porto l'ordine nel prossimo stato
-            let currentState = tavolo.ordine.stato;
-            let nextState = states[states.indexOf(currentState)+1];
-            await Tavolo.updateOne({numero: numeroTavolo}, {$set: {"ordine.stato": nextState}}).orFail();
-        }
-    } catch(err) {
-        throw new Error("impossibile modificare lo stato dell'ordine");
-    }
-}
-
 /*
 * 1. verifico esistenza tavolo e ordine
 * 2. verifico esistenza pietanza
@@ -169,14 +146,41 @@ let addPietanza = async function(numeroTavolo, idPietanza) {
         await session.abortTransaction();
         await session.endSession();
 
-        throw new Error("ingredienti non disponibili");
+        throw new IllegalArgumentException("ingredienti non disponibili");
     }
     
+}
+
+let updateStatoOrdine = async function(numeroTavolo) {
+    let tavolo = await getTavolo(numeroTavolo);
+
+    // verifico presenza ordine
+    if(tavolo.ordine === undefined) {
+        throw new IllegalArgumentException("non esiste un ordine aperto al tavolo selezionato"); 
+    }
+
+    try {
+        if(tavolo.ordine.stato === states[states.length-1]) {
+            // se l'ordine si trova nell'ultimo stato (completato) => lo elimino
+            await Tavolo.updateOne({numero: numeroTavolo}, {$unset: {ordine: 1}}).orFail();
+        } else {
+            // altrimenti, porto l'ordine nel prossimo stato
+            let currentState = tavolo.ordine.stato;
+            let nextState = states[states.indexOf(currentState)+1];
+            await Tavolo.updateOne({numero: numeroTavolo}, {$set: {"ordine.stato": nextState}}).orFail();
+        }
+    } catch(err) {
+        if(err instanceof mongoose.Error) {
+            throw new Error("impossibile accedere ai dati richiesti");
+        } else {
+            throw new IllegalArgumentException("impossibile modificare lo stato dell'ordine");
+        }
+    }
 }
 
 module.exports = {
     readTavoli,
     createOrdine,
-    updateStatoOrdine,
-    addPietanza
+    addPietanza,
+    updateStatoOrdine
 }
