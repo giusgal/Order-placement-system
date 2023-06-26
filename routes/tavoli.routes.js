@@ -37,7 +37,7 @@ router.put("/tavoli/:numero/ordine", async (req, res) => {
         return;
     } catch(err) {
         if(err instanceof IllegalArgumentException) {
-            res.status(422).json({message: err.message});
+            res.status(400).json({message: err.message});
             return;
         } else {
             res.status(500).json({message: err.message});
@@ -46,7 +46,36 @@ router.put("/tavoli/:numero/ordine", async (req, res) => {
     }
 });
 
-router.post("/tavoli/:numero/ordine/pietanze/:pietanza", );
+router.post("/tavoli/:numero/ordine/pietanze/:pietanza", async (req, res) => {
+    let numeroTavolo = parseInt(req.params.numero);
+    let pietanza = parseInt(req.params.pietanza);
+
+    // verifico che il numero del tavolo e l'id della pietanza siano validi
+    if(isNaN(numeroTavolo)) {
+        res.status(400).json({message: "numero del tavolo mancante"});
+        return;
+    }
+
+    if(isNaN(pietanza)) {
+        res.status(400).json({message: "id della pietanza mancante"});
+        return;
+    }
+
+    // aggiungo la pietanza all'ordine
+    try {
+        await tavoliServices.addPietanza(numeroTavolo, pietanza);
+        res.status(200).json({message: "pietanza aggiunta correttamente"});
+        return;
+    } catch(err) {
+        if(err instanceof IllegalArgumentException) {
+            res.status(400).json({message: err.message});
+            return;
+        } else {
+            res.status(500).json({message: err.message});
+            return;
+        }
+    }
+});
 
 router.post("/tavoli/:numero/ordine/stato", async (req, res) => {
     let numeroTavolo = parseInt(req.params.numero);
@@ -63,7 +92,7 @@ router.post("/tavoli/:numero/ordine/stato", async (req, res) => {
         return;
     } catch(err) {
         if(err instanceof IllegalArgumentException) {
-            res.status(422).json({message: err.message});
+            res.status(400).json({message: err.message});
             return;
         } else {
             res.status(500).json({message: err.message});
