@@ -34,10 +34,8 @@ erDiagram
     }
 
     Ordine {
-        id Number PK
-        occupanti Number
         stato String
-        prezzo Number
+        occupanti Number
     }
 
     Pietanza {
