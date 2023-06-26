@@ -15,9 +15,10 @@
 ## Codici di stato HTTP utilizzati
 |           | GET /tavoli | PUT /tavoli/{numero}/ordine | POST /tavoli/{numero}/ordine/pietanze/{pietanza} | POST /tavoli/{numero}/ordine/stato |
 |-----------|-------------|-----------------------------|--------------------------------------------------|------------------------------------|
-|    200    |  richiesta servita correttamente | ordine creato correttamente | . | stato aggiornato correttamente |
-|    422    | . | parametri non validi* | . | parametri non validi** |
-|    500    | impossibile completare la richiesta | impossibile completare la richiesta | . | impossibile completare la richiesta |
+|    200    |  richiesta servita correttamente | ordine creato correttamente | pietanza aggiunta correttamente | stato aggiornato correttamente |
+|    400    | . | numero del tavolo mancante, tavolo non esistente, numero di occupanti mancante, il numero di occupanti supera la capacità del tavolo, esiste un ordine aperto al tavolo selezionato  | numero del tavolo mancante, tavolo non esistente, id della pietanza mancante, ordine non presente o già confermato, pietanza non esistente, ingredienti non disponibili    | numero del tavolo mancante, tavolo non esistente, non esiste un ordine aperto al tavolo selezionato, impossibile modificare lo stato dell'ordine   |
+|    500    | impossibile accedere ai dati richiesti | impossibile accedere ai dati richiesti | impossibile accedere ai dati richiesti | impossibile accedere ai dati richiesti |
+
 
 
 ## Diagramma ER
