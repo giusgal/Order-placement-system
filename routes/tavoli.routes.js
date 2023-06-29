@@ -25,7 +25,7 @@ router.put("/tavoli/:numero/ordine", async (req, res) => {
         return;
     }
 
-    if(isNaN(occupanti) || occupanti < 0) {
+    if(isNaN(occupanti) || occupanti <= 0) {
         res.status(400).json({message: "numero di occupanti non valido"});
         return;
     }
