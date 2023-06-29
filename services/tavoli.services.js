@@ -142,6 +142,12 @@ let addPietanza = async function(numeroTavolo, idPietanza) {
 
         await session.commitTransaction();
         await session.endSession();
+
+        // ritorno dati sulla pietanza aggiunta
+        return {
+            nome: pietanza.nome,
+            prezzo: pietanza.prezzo
+        }
     } catch(err) {
         await session.abortTransaction();
         await session.endSession();
@@ -163,11 +169,13 @@ let updateStatoOrdine = async function(numeroTavolo) {
         if(tavolo.ordine.stato === states[states.length-1]) {
             // se l'ordine si trova nell'ultimo stato (completato) => lo elimino
             await Tavolo.updateOne({numero: numeroTavolo}, {$unset: {ordine: 1}}).orFail();
+            return {nuovoStato: "none"};
         } else {
             // altrimenti, porto l'ordine nel prossimo stato
             let currentState = tavolo.ordine.stato;
             let nextState = states[states.indexOf(currentState)+1];
             await Tavolo.updateOne({numero: numeroTavolo}, {$set: {"ordine.stato": nextState}}).orFail();
+            return {nuovoStato: nextState};
         }
     } catch(err) {
         if(err instanceof mongoose.Error) {

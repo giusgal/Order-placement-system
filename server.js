@@ -4,6 +4,8 @@ let tavoliRoutes = require('./routes/tavoli.routes');
 let app = express();
 
 /* Utilizzo rotte */
+app.use(express.static(__dirname))
+//console.log(__dirname);
 app.use(express.json());
 app.use(tavoliRoutes);
 

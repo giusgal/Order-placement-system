@@ -1,0 +1,232 @@
+:root {
+    --color1: #264653;
+    --color2: #E9C46A;
+    --color3: #2a4d5b;
+    --font1: 'Italianno', cursive;
+    height: 100%;
+}
+
+/*
+* HEADER
+*/
+header {
+    background-color: var(--color1);
+    color: var(--color2);
+    height: 200px;
+    width: 98%;
+    border-radius: 0 0 50px 50px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+header p {
+    font-family: var(--font1);
+    font-size: 4.5em;
+    border-bottom: var(--color2) solid 1px;
+}
+
+/*
+* MAIN
+*/
+main {
+    height: 100%;
+    margin: 60px auto auto auto;
+    width: 95%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    flex-wrap: wrap;
+    align-content: baseline;
+    gap: 20px;
+}
+
+/* Vista Tavoli*/
+.table-card {
+    width: 180px;
+    height: 125px;
+    border-radius: 22px;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    user-select: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
+.table-card:hover {
+    background-color: #ededed;
+}
+
+.table-card:active {
+    background-color: #c9c9c9;
+}
+
+.table-card-header {
+    background-color: var(--color1);
+    border-radius: 22px 22px 22px 22px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-card-title {
+    color: var(--color2);
+}
+
+.table-card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.table-card-body span {
+    padding-top: 10px;
+    font-size: 2.5em;
+    color: var(--color1);
+}
+
+/* Vista Ordini */
+.ordine-card {
+    width: 98%;
+    /* height: 50%; */
+    border-radius: 22px;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    user-select: none;
+    padding-bottom: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
+.ordine-card-header {
+    background-color: var(--color1);
+    border-radius: 22px 22px 22px 22px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.ordine-card-title {
+    color: var(--color2);
+    font-size: 1.5em;
+}
+
+.ordine-card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ordine-card-body span {
+    padding-top: 10px;
+    font-size: 2.5em;
+    color: var(--color1);
+}
+
+.ordine-card-body .table-card-capacity {
+    width: 70%;
+    text-align: center;
+    border-bottom: dotted var(--color1);
+    padding-bottom: 10px;
+}
+
+.ordine-card-body-inserimentoOccupanti {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    border-bottom: dotted var(--color1);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.ordine-card-body-inserimentoOccupanti h3 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.ordine-card-body-inserimentoOccupanti input#numero_occupanti {
+    border-radius: 22px;
+    border: solid 1px var(--color1);
+    width: 20%;
+    height: 2em;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+}
+
+.ordine-card-body-inserimentoOccupanti input#creaOrdine, .ordine-card-body-pietanze input#confermaOrdine {
+    border-radius: 22px;
+    border: solid 1px var(--color1);
+    min-width: 15%;
+    height: 3em;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--color1);
+    color: var(--color2);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    margin-bottom: 10px;
+}
+
+.ordine-card-body-inserimentoOccupanti input#creaOrdine:hover, .ordine-card-body-pietanze input#confermaOrdine:hover {
+    background-color: var(--color3);
+}
+
+.ordine-card-body-inserimentoOccupanti input#creaOrdine:active, .ordine-card-body-pietanze input#confermaOrdine:active {
+    background-color: var(--color1);
+}
+
+.ordine-card-body-pietanze {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.ordine-card-body-pietanze input#pietanza {
+    border-radius: 22px;
+    border: solid 1px var(--color1);
+    width: 20%;
+    height: 2em;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+}
+
+.ordine-card-body-pietanze input#aggiungiPietanza {
+    border-radius: 22px;
+    border: solid 1px var(--color1);
+    min-width: 15%;
+    height: 2em;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--color1);
+    color: var(--color2);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    margin-bottom: 10px;
+}
+
+.ordine-card-body-pietanze input#aggiungiPietanza:hover {
+    background-color: var(--color3);
+}
+
+.ordine-card-body-pietanze input#aggiungiPietanza:active {
+    background-color: var(--color1);
+}
+    
+.ordine-card-body-pietanze li {
+    margin: 10px;
+}
