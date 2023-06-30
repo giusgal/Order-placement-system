@@ -1,7 +1,7 @@
 # Progetto ACP - Sistema gestione ristorante
 
 <p align="center">
-    <img src="./Cattura.PNG">
+    <img src="./vista_tavoli.png">
 </p>
 
 ## Risorse
