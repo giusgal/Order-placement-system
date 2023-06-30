@@ -1,7 +1,7 @@
 # Progetto ACP - Sistema gestione ristorante
 
 <p align="center">
-    <img src="./Cattura.PNG">
+    <img src="./vista_tavoli.png">
 </p>
 
 ## Risorse
@@ -18,7 +18,7 @@ Per ogni codice di stato sono specificate tutte le possibili risposte fornite da
 |-----------|-------------|-----------------------------|--------------------------------------------------|------------------------------------|
 |    200    |  JSON(tavoli) | ordine creato correttamente | JSON(pietanza_aggiunta) | JSON(stato_aggiornato) |
 |    400    | . | numero del tavolo non valido, tavolo non esistente, numero di occupanti non valido, il numero di occupanti supera la capacità del tavolo, esiste un ordine aperto al tavolo selezionato  | numero del tavolo non valido, tavolo non esistente, id della pietanza non valido, ordine non presente o già confermato, pietanza non esistente, ingredienti non disponibili    | numero del tavolo non valido, tavolo non esistente, non esiste un ordine aperto al tavolo selezionato, impossibile modificare lo stato dell'ordine   |
-|    500    | impossibile accedere ai dati richiesti | impossibile accedere ai dati richiesti | impossibile accedere ai dati richiesti | impossibile accedere ai dati richiesti |
+|    500    | impossibile accedere ai dati richiesti | impossibile accedere ai dati richiesti | impossibile accedere ai dati richiesti | impossibile accedere ai dati richiesti, Problemi nel prenotare la pietanza riprova |
 
 Nota:
 
