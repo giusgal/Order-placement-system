@@ -198,7 +198,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/ristorante_db').then(async () => {
             session.startTransaction();
     
             // test
-            await Ingrediente.updateOne({id: 10}, {$inc: {scorte: -10}}, {session: session});
+            for(let i = 0; i < 10; ++i) {
+                await Ingrediente.updateOne({id: 10, scorte: {$gte: 10}}, {$inc: {scorte: -10}}, {session: session}).orFail();
+
+                console.log("sottratto"+i);
+                
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+
 
             //console.log("Here");
 

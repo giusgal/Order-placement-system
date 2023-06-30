@@ -116,6 +116,9 @@ let addPietanza = async function(numeroTavolo, idPietanza) {
                 {$inc: {scorte: (-1)*quantitaRichiesta}},
                 {session: session}
             ).orFail();
+            
+            // testing
+            // await new Promise(resolve => setTimeout(resolve, 1000));
         }
         
         // aggiungo pietanza all'ordine
@@ -152,7 +155,12 @@ let addPietanza = async function(numeroTavolo, idPietanza) {
         await session.abortTransaction();
         await session.endSession();
 
-        throw new IllegalArgumentException("ingredienti non disponibili");
+        if(err.codeName === "WriteConflict") {
+            throw new Error("Problemi nel prenotare la pietanza, riprova");
+        } else {
+            throw new IllegalArgumentException("ingredienti non disponibili");
+        }
+
     }
     
 }
