@@ -1,0 +1,5 @@
+Comandi per aggiungere documenti su MongoDB:
+
+mongoimport -d ristorante_db -c tavolos --legacy tavoli.json
+mongoimport -d ristorante_db -c pietanzas --legacy pietanze.json
+mongoimport -d ristorante_db -c ingredientes --legacy ingredienti.json

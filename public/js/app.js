@@ -4,7 +4,7 @@
 let vistaTavoli = async () => {
     "use strict";
 
-    let tavoli = await $.getJSON("/tavoli");
+    let tavoli = (await $.getJSON("/tavoli")).message;
 
     const tableCard =
         `<div class="table-card" id="#{numero_tavolo}">
@@ -23,7 +23,6 @@ let vistaTavoli = async () => {
 
         // aggiungo tavoli al DOM
         tavoli.forEach(tavolo => {
-            //console.log(tavolo.ordine);
             if(tavolo.ordine === undefined) {
                 $("main").append(
                     tableCard
@@ -52,7 +51,7 @@ let vistaOrdineOccupanti = (numeroTavolo, capacita) => {
 
                 <div class="ordine-card-body-inserimentoOccupanti">
                     <h3>Numero di occupanti:</h3>
-                    <input type="number" name="numero_occupanti" id="numero_occupanti">
+                    <input type="number" name="numero_occupanti" id="numero_occupanti" min="0">
                     <input type="button" value="crea ordine" id="creaOrdine">
                 </div>
             </div>
@@ -84,11 +83,14 @@ let main = () => {
     });
 
     $("main").on("click", "#creaOrdine", function () {
+        
         let occupanti = $("#numero_occupanti").val();
         
         if(occupanti !== "") {
+            // disabilito bottone per evitare click multipli
+            $("#creaOrdine").prop("disabled", true);
+
             let numeroTavolo = $(".ordine-card").attr("id");
-            //let capacita = $(".table-card-capacity").text();
 
             $.ajax({
                 method: "PUT",
@@ -98,15 +100,13 @@ let main = () => {
             })
             .then((msg) => {
                 // aggiorno vista ordine
-                //vistaOrdinePietanze(numeroTavolo, occupanti, capacita);
-
                 const inputPietanze = 
                 `
                     <div class="ordine-card-body-pietanze">
                         <h3>Pietanze:</h3>
                         <ul>
                         </ul>
-                        <input type="number" name="pietana" id="pietanza">
+                        <input type="number" name="pietana" id="pietanza" min="0">
                         <input type="button" value="Aggiungi" id="aggiungiPietanza">
                         <input type="button" value="conferma" id="confermaOrdine">
                     </div>
@@ -118,6 +118,9 @@ let main = () => {
             })
             .fail((err) => {
                 alert(JSON.parse(err.responseText).message);
+
+                // riabilito bottone
+                $("#creaOrdine").prop("disabled", false);
             });
         }
     });
@@ -126,6 +129,9 @@ let main = () => {
         let pietanza = $("#pietanza").val();
 
         if(pietanza !== "") {
+            // disabilito bottone per evitare click multipli
+            $("#aggiungiPietanza").prop("disabled", true);
+
             let numeroTavolo = $(".ordine-card").attr("id");
 
             $.ajax({
@@ -138,9 +144,15 @@ let main = () => {
                 $("ul").prepend(
                     "<li>"+nomePietanza+"</li>"
                 );
+
+                // riabilito bottone
+                $("#aggiungiPietanza").prop("disabled", false);
             })
             .fail((err) => {
                 alert(JSON.parse(err.responseText).message);
+
+                // riabilito bottone
+                $("#aggiungiPietanza").prop("disabled", false);
             });
         }
     });
@@ -149,6 +161,9 @@ let main = () => {
         let numeroPietanze = $("ul").children().length;
 
         if(numeroPietanze !== 0) {
+            // disabilito bottone per evitare click multipli
+            $("#confermaOrdine").prop("disabled", true);
+
             let numeroTavolo = $(".ordine-card").attr("id");
 
             $.ajax({
@@ -156,12 +171,13 @@ let main = () => {
                 url: "/tavoli/"+numeroTavolo+"/ordine/stato"
             })
             .then((msg) => {
-                //console.log(msg);
-
                 vistaTavoli();
             })
             .fail((err) => {
                 alert(JSON.parse(err.responseText).message);
+
+                // riabilito bottone
+                $("#confermaOrdine").prop("disabled", false);
             });
 
         }

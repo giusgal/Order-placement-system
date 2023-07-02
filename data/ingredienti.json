@@ -1,0 +1,10 @@
+{"_id":{"$oid":"6498a28d48a9e56182ae125a"},"id":1,"nome":"uova","scorte":996,"__v":0,"scrote":1000}
+{"_id":{"$oid":"6498a28e48a9e56182ae125c"},"id":2,"nome":"pancetta","scorte":840,"__v":0,"scrote":1000}
+{"_id":{"$oid":"6498a28e48a9e56182ae125e"},"id":3,"nome":"pecorino","scorte":800,"__v":0,"scrote":1000}
+{"_id":{"$oid":"6498a28e48a9e56182ae1260"},"id":4,"nome":"pepe nero","scorte":992,"__v":0,"scrote":1000}
+{"_id":{"$oid":"6498a28e48a9e56182ae1262"},"id":5,"nome":"spaghetti","scorte":520,"__v":0,"scrote":1000}
+{"_id":{"$oid":"6498a3e8a115f76a7b5519dc"},"id":6,"nome":"rigatoni","scorte":400,"__v":0,"scrote":1000}
+{"_id":{"$oid":"6498a3e8a115f76a7b5519de"},"id":7,"nome":"sugo di pomodoro","scorte":600,"__v":0,"scrote":1000}
+{"_id":{"$oid":"6498a3e8a115f76a7b5519e0"},"id":8,"nome":"olio d'oliva","scorte":925,"__v":0,"scrote":1000}
+{"_id":{"$oid":"6498a3e8a115f76a7b5519e2"},"id":9,"nome":"aglio","scorte":995,"__v":0,"scrote":1000}
+{"_id":{"$oid":"6498a3e8a115f76a7b5519e4"},"id":10,"nome":"basilico","scorte":85,"__v":0,"scrote":1000}

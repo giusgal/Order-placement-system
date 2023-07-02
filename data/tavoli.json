@@ -1,0 +1,6 @@
+{"_id":{"$oid":"6496100b28b59bb8e2d46214"},"numero":1,"capacita":6,"__v":9}
+{"_id":{"$oid":"649cb86d96e8e92d59eba8a6"},"numero":2,"capacita":5,"__v":0}
+{"_id":{"$oid":"649cb8c796e8e92d59eba8a7"},"numero":3,"capacita":2,"__v":3}
+{"_id":{"$oid":"649cb8c796e8e92d59eba8a8"},"numero":4,"capacita":4,"__v":2}
+{"_id":{"$oid":"649cb8c796e8e92d59eba8a9"},"numero":5,"capacita":5,"__v":2}
+{"_id":{"$oid":"649cb8c796e8e92d59eba8aa"},"numero":6,"capacita":3,"__v":2}

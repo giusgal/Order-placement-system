@@ -17,6 +17,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/ristorante_db')
 });
 
 /* Funzioni di utilità */
+
+/* recupera un tavolo dal DB e lo restituisce */
 let getTavolo = async function(numeroTavolo) {
     try {
         let tavolo = await Tavolo.findOne({numero: numeroTavolo}).orFail();
@@ -32,6 +34,8 @@ let getTavolo = async function(numeroTavolo) {
 }
 
 /* Servizi */
+
+/* recupera i tavoli dal DB e li restituisce */
 let readTavoli = async function() {
     try {
         let tavoli = await Tavolo.find({});
@@ -41,6 +45,7 @@ let readTavoli = async function() {
     }
 }
 
+/* crea un nuovo ordine al tavolo selezionato */
 let createOrdine = async function(numeroTavolo, occupanti) {
     let tavolo = await getTavolo(numeroTavolo);
 
@@ -68,16 +73,7 @@ let createOrdine = async function(numeroTavolo, occupanti) {
     }
 }
 
-/*
-* 1. verifico esistenza tavolo e ordine
-* 2. verifico esistenza pietanza
-* 3. Begin transaction
-*   4. sottraggo le scorte da tutti gli ingredienti presenti nella pietanza
-*       4.1 se un ingrediente non presenta scorte sufficienti => abort()
-*   5. aggiungo la pietanza all'ordine
-*       5.1 se la pietanza è già presente nell'ordine => incremento solo la quantità
-* 6. End transaction
-*/
+/* aggiunge una pietanza ad un ordine */
 let addPietanza = async function(numeroTavolo, idPietanza) {
     // verifico esistenza numero tavolo
     let tavolo = await getTavolo(numeroTavolo);
@@ -106,7 +102,7 @@ let addPietanza = async function(numeroTavolo, idPietanza) {
     try {
         session.startTransaction();
 
-        // sottraggo le scorte dagli ingredienti presenti nella pietanza
+        // modifico le scorte degli ingredienti presenti nella pietanza
         for(let i = 0; i < pietanza.ingredienti.length; ++i) {
             let idIngrediente = pietanza.ingredienti[i].ingrediente.id;
             let quantitaRichiesta = pietanza.ingredienti[i].quantita;
@@ -117,8 +113,6 @@ let addPietanza = async function(numeroTavolo, idPietanza) {
                 {session: session}
             ).orFail();
             
-            // testing
-            // await new Promise(resolve => setTimeout(resolve, 1000));
         }
         
         // aggiungo pietanza all'ordine
@@ -146,7 +140,7 @@ let addPietanza = async function(numeroTavolo, idPietanza) {
         await session.commitTransaction();
         await session.endSession();
 
-        // ritorno dati sulla pietanza aggiunta
+        // ritorno informazioni sulla pietanza aggiunta
         return {
             nome: pietanza.nome,
             prezzo: pietanza.prezzo
@@ -165,6 +159,7 @@ let addPietanza = async function(numeroTavolo, idPietanza) {
     
 }
 
+/* aggiorna lo stato dell'ordine */
 let updateStatoOrdine = async function(numeroTavolo) {
     let tavolo = await getTavolo(numeroTavolo);
 

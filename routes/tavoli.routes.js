@@ -7,7 +7,7 @@ let router = express.Router();
 router.get("/tavoli", async (req, res) => {
     try {
         let tavoli = await tavoliServices.readTavoli();
-        res.status(200).json(tavoli);
+        res.status(200).json({message: tavoli});
         return;
     } catch(err) {
         res.status(500).json({message: err.message});
@@ -86,6 +86,7 @@ router.post("/tavoli/:numero/ordine/stato", async (req, res) => {
         return;
     }
 
+    // aggiorno lo stato dell'ordine
     try {
         let stato = await tavoliServices.updateStatoOrdine(numeroTavolo);
         res.status(200).json({message: stato});

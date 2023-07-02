@@ -13,7 +13,7 @@
 | POST      | /tavoli/{numero}/ordine/stato               | Aggiorna lo stato dell'ordine al tavolo identificato da {numero}                |
 
 ## Codici di stato HTTP utilizzati
-Per ogni codice di stato sono specificate tutte le possibili risposte fornite dal server.
+Per ogni codice di stato sono specificate le possibili risposte fornite dal server.
 |   Codice  | GET /tavoli | PUT /tavoli/{numero}/ordine | POST /tavoli/{numero}/ordine/pietanze/{pietanza} | POST /tavoli/{numero}/ordine/stato |
 |-----------|-------------|-----------------------------|--------------------------------------------------|------------------------------------|
 |    200    |  JSON(tavoli) | ordine creato correttamente | JSON(pietanza_aggiunta) | JSON(stato_aggiornato) |
@@ -22,12 +22,11 @@ Per ogni codice di stato sono specificate tutte le possibili risposte fornite da
 
 Nota:
 
-1. Tutti i messaggi riportati vengono ritornati nel modo seguente:
+1. Tutti i messaggi riportati vengono ritornati nel seguente modo:
 
     ```json
     {"message": "<msg>"}
     ```
-
 
 
 ## Diagramma ER
