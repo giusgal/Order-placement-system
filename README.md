@@ -16,8 +16,8 @@ An Order placement system intended to help waitres place orders using a tablet. 
 ## Usage
 
 ```console
-$ git clone https://github.com/giusgal/ProgettoACP.git
-$ cd ProgettoACP
+$ git clone https://github.com/giusgal/Order-placement-system.git
+$ cd Order-placement-system
 $ npm install
 $ node server.js
 ```
