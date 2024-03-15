@@ -1,5 +1,5 @@
 # Order Placement System
-An Order placement system coded in `Express/Mongoose` and `Javascript/HTML/CSS` for an University project.
+An Order placement system coded in `Express/Mongoose` and `Javascript/HTML/CSS` for a University project.
 
 ## Gallery
 ### Main view
