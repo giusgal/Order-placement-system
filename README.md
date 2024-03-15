@@ -1,8 +1,6 @@
 # Order Placement System
 
-An Order placement system intended to help waitres place orders using a tablet.
-
-Coded in `Express/Mongoose` and `Javascript/HTML/CSS` for a University project.
+An Order placement system intended to help waitres place orders using a tablet. Developed using Express and Mongoose as a university project.
 
 ## Gallery
 ### Main view
@@ -14,3 +12,12 @@ Coded in `Express/Mongoose` and `Javascript/HTML/CSS` for a University project.
 <p align="center">
     <img src="./doc/vista2ori.png">
 </p>
+
+## Usage
+
+```console
+$ git clone https://github.com/giusgal/ProgettoACP.git
+$ cd ProgettoACP
+$ npm install
+$ node server.js
+```
